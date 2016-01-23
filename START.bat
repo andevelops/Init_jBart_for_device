@@ -28,5 +28,5 @@ if "%choice%"=="1" (copy %LD%\fly\evo_energy_1.* %CD%
 start %CD%\evo_energy_1.bat)
 if "%choice%"=="2" (copy %LD%\fly\evo_tech_3.* %CD%
 start %CD%\evo_tech_3.bat)
-if "%choice%"=="3" (copy %LD%\fly\a536.* %CD%
+if "%choice%"=="3" (copy %LD%\lenovo\a536.* %CD%
 start %CD%\a536.bat)
