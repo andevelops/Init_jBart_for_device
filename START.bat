@@ -13,20 +13,43 @@ echo info: Unpack Devices inits.
 %Zip%\7z.exe x -y -r %Dini%\Dini.zip -o%Dini%
 
 cls
- 
-:m1
-Echo Выберите свой девайс:
-Echo.
-Echo 1 - Evo Energy 1
-Echo 2 - Evo Tech 3
-Echo 3 - A536
- 
-echo.
-Set /p choice="Ваш выбор: "
-if not defined choice goto m1
-if "%choice%"=="1" (copy %LD%\fly\evo_energy_1.* %CD%
-call %CD%\evo_energy_1.bat)
-if "%choice%"=="2" (copy %LD%\fly\evo_tech_3.* %CD%
-call %CD%\evo_tech_3.bat)
-if "%choice%"=="3" (copy %LD%\lenovo\a536.* %CD%
-call %CD%\a536.bat)
+
+:mbrand
+
+echo - fly
+echo - lenovo
+
+Set /p brand="Введите свой бренд из списка: "
+if not defined brand goto mbrand
+if "%brand%"=="fly" (goto m%brand%)
+if "%brand%"=="lenovo" (goto m%brand%)
+cls
+goto mbrand
+
+:mfly
+cls
+echo - evo_energy_1
+echo - evo_tech_3
+echo - evo_tech_4
+
+Set /p model="Введите свой девайс из списка: "
+if not defined model goto mfly
+if "%model%"=="evo_energy_1" (goto mfinish)
+if "%model%"=="evo_tech_3" (goto mfinish)
+if "%model%"=="evo_tech_4" (goto mfinish)
+goto mfly
+
+:mlenovo
+cls
+echo - A536
+
+Set /p model="Введите свой девайс из списка: "
+if not defined model goto mlenovo
+if "%model%"=="A536" (goto mfinish)
+goto mlenovo
+
+:mfinish
+cls
+copy %LD%\%brand%\%model%.* %CD%
+call %CD%\%model%.bat
+
